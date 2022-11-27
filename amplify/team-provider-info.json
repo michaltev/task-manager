@@ -1,0 +1,31 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-taskmanager2-dev-183500-authRole",
+      "UnauthRoleArn": "arn:aws:iam::105368298140:role/amplify-taskmanager2-dev-183500-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::105368298140:role/amplify-taskmanager2-dev-183500-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-taskmanager2-dev-183500-deployment",
+      "UnauthRoleName": "amplify-taskmanager2-dev-183500-unauthRole",
+      "StackName": "amplify-taskmanager2-dev-183500",
+      "StackId": "arn:aws:cloudformation:us-east-2:105368298140:stack/amplify-taskmanager2-dev-183500/71f93270-6e71-11ed-976a-0a47fb030776",
+      "AmplifyAppId": "d25hf8kwcgrc6h",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-taskmanager2-dev-183500-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+    },
+    "categories": {
+      "auth": {
+        "taskmanager2ce16e04fce16e04f": {},
+        "userPoolGroups": {}
+      },
+      "function": {
+        "taskmanager2ce16e04fce16e04fPostConfirmation": {
+          "deploymentBucketName": "amplify-taskmanager2-dev-183500-deployment",
+          "s3Key": "amplify-builds/taskmanager2ce16e04fce16e04fPostConfirmation-444c576b372f73395547-build.zip"
+        }
+      },
+      "api": {
+        "taskmanager2": {}
+      }
+    }
+  }
+}

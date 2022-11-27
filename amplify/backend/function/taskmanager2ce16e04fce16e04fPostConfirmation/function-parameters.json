@@ -1,0 +1,17 @@
+{
+  "trigger": true,
+  "modules": [
+    "custom"
+  ],
+  "parentResource": "taskmanager2ce16e04fce16e04f",
+  "functionName": "taskmanager2ce16e04fce16e04fPostConfirmation",
+  "resourceName": "taskmanager2ce16e04fce16e04fPostConfirmation",
+  "parentStack": "auth",
+  "triggerEnvs": [],
+  "triggerDir": "/snapshot/repo/build/node_modules/@aws-amplify/amplify-category-auth/provider-utils/awscloudformation/triggers/PostConfirmation",
+  "triggerTemplate": "PostConfirmation.json.ejs",
+  "triggerEventPath": "PostConfirmation.event.json",
+  "roleName": "taskmanager2ce16e04fce16e04fPostConfirmation",
+  "skipEdit": true,
+  "enableCors": false
+}
