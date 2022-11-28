@@ -56,7 +56,7 @@ const AddTaskHooks = ({ fetchItems }) => {
 			<Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
 				<DialogTitle id="form-dialog-title">Add a New Task</DialogTitle>
 				<DialogContent>
-					<TextField id="name" label="Name" type="string" onChange={handleNameChange('name')} />
+					<TextField id="name" label="Name" type="string" fullWidth onChange={handleNameChange('name')} />
 					<TextField
 						style={{ marginTop: 10 }}
 						multiline
