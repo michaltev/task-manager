@@ -4,24 +4,25 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import AddIcon from '@mui/icons-material/Add';
+import EditIcon from '@mui/icons-material/Edit';
 import Button from '@mui/material/Button';
-
 import { API, graphqlOperation } from 'aws-amplify';
 import * as mutations from '../graphql/mutations';
 import { getCityInName, getTempratureInCity } from '../services/cityWeatherService';
 
-const AddTaskHooks = ({ fetchItems }) => {
+const EditTaskHooks = ({ currentItem, onSuccess }) => {
 	const [name, setName] = React.useState('');
 	const [description, setDescription] = React.useState('');
 	const [open, setOpen] = React.useState(false);
 
 	const handleClickOpen = () => {
-		setOpen(true);
+		toggleOpen();
+		setName(currentItem.name);
+		setDescription(currentItem.description);
 	};
 
-	const handleClose = () => {
-		setOpen(false);
+	const toggleOpen = () => {
+		setOpen(!open);
 	};
 
 	const handleNameChange = name => event => {
@@ -33,47 +34,59 @@ const AddTaskHooks = ({ fetchItems }) => {
 	};
 
 	const handleSubmit = async e => {
-		const itemDetails = {
-			name: name,
-			description: description,
+		var itemDetails = {
+			id: currentItem.id,
+			name: name || currentItem.name,
+			description: description || currentItem.description,
 		};
-
 		const cityInTask = getCityInName(itemDetails.name);
 		if (cityInTask) {
 			itemDetails.temprature = await getTempratureInCity(cityInTask);
 		}
-		await API.graphql(graphqlOperation(mutations.createTask, { input: itemDetails }));
-		handleClose();
-		fetchItems();
+		await API.graphql(graphqlOperation(mutations.updateTask, { input: itemDetails }));
+		toggleOpen();
+		onSuccess();
 	};
 
 	return (
 		<div style={{ display: 'flex', flexWrap: 'wrap' }}>
-			<Button variant="fab" color="inherit" aria-label="Add" onClick={handleClickOpen}>
-				<AddIcon /> Add a New Task
+			<Button size="small" color="inherit" aria-label="Edit" onClick={handleClickOpen}>
+				<EditIcon />
 			</Button>
 
-			<Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-				<DialogTitle id="form-dialog-title">Add a New Task</DialogTitle>
+			<Dialog open={open} onClose={toggleOpen} aria-labelledby="form-dialog-title">
+				<DialogTitle id="form-dialog-title">Edit Task: {currentItem.name}</DialogTitle>
 				<DialogContent>
-					<TextField id="name" label="Name" type="string" fullWidth onChange={handleNameChange('name')} />
+					<TextField
+						style={{ marginRight: 10 }}
+						id="name"
+						value={name}
+						placeholder={currentItem.name}
+						label="Name"
+						type="string"
+						onChange={handleNameChange()}
+						fullWidth
+					/>
+
 					<TextField
 						style={{ marginTop: 10 }}
 						multiline
 						id="description"
+						value={description}
+						placeholder={currentItem.description}
 						label="Description"
 						type="string"
 						rows="4"
 						fullWidth
-						onChange={handleDescriptionChange('description')}
+						onChange={handleDescriptionChange()}
 					/>
 				</DialogContent>
 				<DialogActions>
-					<Button onClick={handleClose} color="primary">
+					<Button onClick={toggleOpen} color="primary">
 						Cancel
 					</Button>
 					<Button onClick={handleSubmit} color="primary">
-						Add Task
+						Submit
 					</Button>
 				</DialogActions>
 			</Dialog>
@@ -81,4 +94,4 @@ const AddTaskHooks = ({ fetchItems }) => {
 	);
 };
 
-export default AddTaskHooks;
+export default EditTaskHooks;

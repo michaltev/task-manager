@@ -5,11 +5,11 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import ThermostatIcon from '@mui/icons-material/Thermostat';
-import EditItem from './editItem';
-import DeleteItem from './deleteItem';
+import EditTask from './EditTask';
+import DeleteTask from './DeleteTask';
 import { Stack } from '@mui/material';
 
-const ListItemsHooks = ({ fetchItems, items }) => {
+const ListTasksHooks = ({ fetchItems, items }) => {
 	React.useEffect(() => {
 		fetchItems();
 	}, []);
@@ -24,8 +24,8 @@ const ListItemsHooks = ({ fetchItems, items }) => {
 						style={{
 							width: 'inherit',
 							display: 'flex',
-							'flex-direction': 'column',
-							'justify-content': 'space-between',
+							flexDirection: 'column',
+							justifyContent: 'space-between',
 						}}
 					>
 						<Card>
@@ -46,8 +46,8 @@ const ListItemsHooks = ({ fetchItems, items }) => {
 									</Typography>
 								</CardContent>
 								<CardActions>
-									<EditItem currentItem={item} fetchItems={fetchItems} />
-									<DeleteItem currentItem={item} fetchItems={fetchItems} />
+									<EditTask currentItem={item} onSuccess={fetchItems} />
+									<DeleteTask currentItem={item} onSuccess={fetchItems} />
 								</CardActions>
 							</Stack>
 						</Card>
@@ -58,4 +58,4 @@ const ListItemsHooks = ({ fetchItems, items }) => {
 	);
 };
 
-export default ListItemsHooks;
+export default ListTasksHooks;

@@ -7,15 +7,11 @@ import Button from '@mui/material/Button';
 import { API, graphqlOperation } from 'aws-amplify';
 import * as mutations from '../graphql/mutations';
 
-const DeleteTaskHooks = ({ currentItem, fetchItems }) => {
+const DeleteTaskHooks = ({ currentItem, onSuccess }) => {
 	const [open, setOpen] = React.useState(false);
 
-	const handleClickOpen = () => {
-		setOpen(true);
-	};
-
-	const handleClose = () => {
-		setOpen(false);
+	const toggleOpen = () => {
+		setOpen(!open);
 	};
 
 	const handleDelete = async () => {
@@ -23,20 +19,20 @@ const DeleteTaskHooks = ({ currentItem, fetchItems }) => {
 			id: currentItem.id,
 		};
 		await API.graphql(graphqlOperation(mutations.deleteTask, { input: itemDetails }));
-		handleClose();
-		fetchItems();
+		toggleOpen();
+		onSuccess();
 	};
 
 	return (
 		<div style={{ display: 'flex', flexWrap: 'wrap' }}>
-			<Button size="small" color="inherit" aria-label="Add" onClick={handleClickOpen}>
+			<Button size="small" color="inherit" aria-label="Add" onClick={toggleOpen}>
 				<DeleteIcon />
 			</Button>
 
-			<Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+			<Dialog open={open} onClose={toggleOpen} aria-labelledby="form-dialog-title">
 				<DialogTitle id="form-dialog-title">Are you sure you want to delete task: {currentItem.name}?</DialogTitle>
 				<DialogActions>
-					<Button onClick={handleClose} color="primary">
+					<Button onClick={toggleOpen} color="primary">
 						Cancel
 					</Button>
 					<Button onClick={handleDelete} color="primary">

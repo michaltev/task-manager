@@ -2,8 +2,8 @@ import { Amplify, API, graphqlOperation } from 'aws-amplify';
 import { withAuthenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 
-import AppNavBar from './components/appNavBar';
-import ListItems from './components/listItems';
+import NavBar from './components/NavBar';
+import ListTasks from './components/ListTasks';
 import Button from '@mui/material/Button';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Stack } from '@mui/material';
@@ -35,8 +35,8 @@ function App({ signOut, user }) {
 			</Stack>
 
 			<div>
-				<AppNavBar fetchItems={fetchItems} />
-				<ListItems fetchItems={fetchItems} items={items} />
+				<NavBar fetchItems={fetchItems} />
+				<ListTasks fetchItems={fetchItems} items={items} />
 			</div>
 		</div>
 	);
