@@ -65,6 +65,7 @@ const EditTaskHooks = ({ currentItem, fetchItems }) => {
 						label="Name"
 						type="string"
 						onChange={handleNameChange('name')}
+						fullWidth
 					/>
 
 					<TextField
