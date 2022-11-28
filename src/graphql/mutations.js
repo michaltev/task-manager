@@ -9,17 +9,11 @@ export const createTask = /* GraphQL */ `
     createTask(input: $input, condition: $condition) {
       id
       name
-      userId {
-        id
-        username
-        email
-        createdAt
-        updatedAt
-      }
+      owner
       description
+      temprature
       createdAt
       updatedAt
-      username
     }
   }
 `;
@@ -31,17 +25,11 @@ export const updateTask = /* GraphQL */ `
     updateTask(input: $input, condition: $condition) {
       id
       name
-      userId {
-        id
-        username
-        email
-        createdAt
-        updatedAt
-      }
+      owner
       description
+      temprature
       createdAt
       updatedAt
-      username
     }
   }
 `;
@@ -53,17 +41,11 @@ export const deleteTask = /* GraphQL */ `
     deleteTask(input: $input, condition: $condition) {
       id
       name
-      userId {
-        id
-        username
-        email
-        createdAt
-        updatedAt
-      }
+      owner
       description
+      temprature
       createdAt
       updatedAt
-      username
     }
   }
 `;

@@ -4,66 +4,48 @@
 export const onCreateTask = /* GraphQL */ `
   subscription OnCreateTask(
     $filter: ModelSubscriptionTaskFilterInput
-    $username: String
+    $owner: String
   ) {
-    onCreateTask(filter: $filter, username: $username) {
+    onCreateTask(filter: $filter, owner: $owner) {
       id
       name
-      userId {
-        id
-        username
-        email
-        createdAt
-        updatedAt
-      }
+      owner
       description
+      temprature
       createdAt
       updatedAt
-      username
     }
   }
 `;
 export const onUpdateTask = /* GraphQL */ `
   subscription OnUpdateTask(
     $filter: ModelSubscriptionTaskFilterInput
-    $username: String
+    $owner: String
   ) {
-    onUpdateTask(filter: $filter, username: $username) {
+    onUpdateTask(filter: $filter, owner: $owner) {
       id
       name
-      userId {
-        id
-        username
-        email
-        createdAt
-        updatedAt
-      }
+      owner
       description
+      temprature
       createdAt
       updatedAt
-      username
     }
   }
 `;
 export const onDeleteTask = /* GraphQL */ `
   subscription OnDeleteTask(
     $filter: ModelSubscriptionTaskFilterInput
-    $username: String
+    $owner: String
   ) {
-    onDeleteTask(filter: $filter, username: $username) {
+    onDeleteTask(filter: $filter, owner: $owner) {
       id
       name
-      userId {
-        id
-        username
-        email
-        createdAt
-        updatedAt
-      }
+      owner
       description
+      temprature
       createdAt
       updatedAt
-      username
     }
   }
 `;

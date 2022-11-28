@@ -6,17 +6,11 @@ export const getTask = /* GraphQL */ `
     getTask(id: $id) {
       id
       name
-      userId {
-        id
-        username
-        email
-        createdAt
-        updatedAt
-      }
+      owner
       description
+      temprature
       createdAt
       updatedAt
-      username
     }
   }
 `;
@@ -30,17 +24,11 @@ export const listTasks = /* GraphQL */ `
       items {
         id
         name
-        userId {
-          id
-          username
-          email
-          createdAt
-          updatedAt
-        }
+        owner
         description
+        temprature
         createdAt
         updatedAt
-        username
       }
       nextToken
     }

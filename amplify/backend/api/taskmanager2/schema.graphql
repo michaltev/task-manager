@@ -7,7 +7,7 @@ type Task
 	@model
 	@auth(
 		rules: [
-			{ allow: groups, groups: ["Admin"] }
+			{ allow: groups, groups: ["Admin"], operations: [read] }
 			{ allow: owner, ownerField: "owner", operations: [create, update, delete, read] }
 		]
 	) {
