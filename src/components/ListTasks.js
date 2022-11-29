@@ -27,7 +27,7 @@ const ListTasksHooks = ({ fetchItems, items, hideCompleted }) => {
 							display: 'flex',
 							flexDirection: 'column',
 							justifyContent: 'space-between',
-							//paddingTop: hideCompleted && item.isCompleted ? '0px' : '',
+							paddingTop: hideCompleted && item.isCompleted ? '0px' : '',
 						}}
 					>
 						{hideCompleted && item.isCompleted ? null : (
