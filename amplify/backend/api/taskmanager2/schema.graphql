@@ -16,6 +16,7 @@ type Task
 	owner: String
 	description: String
 	temprature: Int
+	isCompleted: Boolean
 }
 
 type User

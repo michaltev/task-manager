@@ -12,6 +12,7 @@ export const createTask = /* GraphQL */ `
       owner
       description
       temprature
+      isCompleted
       createdAt
       updatedAt
     }
@@ -28,6 +29,7 @@ export const updateTask = /* GraphQL */ `
       owner
       description
       temprature
+      isCompleted
       createdAt
       updatedAt
     }
@@ -44,6 +46,7 @@ export const deleteTask = /* GraphQL */ `
       owner
       description
       temprature
+      isCompleted
       createdAt
       updatedAt
     }
