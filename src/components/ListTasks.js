@@ -8,6 +8,7 @@ import ThermostatIcon from '@mui/icons-material/Thermostat';
 import EditTask from './EditTask';
 import DeleteTask from './DeleteTask';
 import { Stack } from '@mui/material';
+import CompleteTask from './CompleteTask';
 
 const ListTasksHooks = ({ fetchItems, items }) => {
 	React.useEffect(() => {
@@ -46,6 +47,7 @@ const ListTasksHooks = ({ fetchItems, items }) => {
 									</Typography>
 								</CardContent>
 								<CardActions>
+									<CompleteTask currentItem={item} onSuccess={fetchItems} />
 									<EditTask currentItem={item} onSuccess={fetchItems} />
 									<DeleteTask currentItem={item} onSuccess={fetchItems} />
 								</CardActions>
