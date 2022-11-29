@@ -19,8 +19,9 @@ function App({ signOut, user }) {
 	readFile();
 
 	const [items, setItems] = React.useState([]);
+	const [hideCompleted, setHideCompleted] = React.useState(true);
 
-	const fetchItems = async () => {
+	const fetchItems = async isCompleted => {
 		const data = await API.graphql(graphqlOperation(queries.listTasks));
 		// sort by creation date in FE - if the data was paginated, the sort must have been in the query
 		const sortedData = data.data.listTasks.items.sort(function (a, b) {
@@ -40,8 +41,8 @@ function App({ signOut, user }) {
 			</Stack>
 
 			<div>
-				<NavBar fetchItems={fetchItems} />
-				<ListTasks fetchItems={fetchItems} items={items} />
+				<NavBar fetchItems={fetchItems} hideCompleted={hideCompleted} setHideCompleted={setHideCompleted} />
+				<ListTasks fetchItems={fetchItems} items={items} hideCompleted={hideCompleted} />
 			</div>
 		</div>
 	);

@@ -10,7 +10,7 @@ import DeleteTask from './DeleteTask';
 import { Stack } from '@mui/material';
 import CompleteTask from './CompleteTask';
 
-const ListTasksHooks = ({ fetchItems, items }) => {
+const ListTasksHooks = ({ fetchItems, items, hideCompleted }) => {
 	React.useEffect(() => {
 		fetchItems();
 	}, []);
@@ -27,32 +27,35 @@ const ListTasksHooks = ({ fetchItems, items }) => {
 							display: 'flex',
 							flexDirection: 'column',
 							justifyContent: 'space-between',
+							//paddingTop: hideCompleted && item.isCompleted ? '0px' : '',
 						}}
 					>
-						<Card>
-							<Stack flexGrow={1} direction={'row'} justifyContent={'space-between'}>
-								<CardContent>
-									<Typography variant="h6" gutterBottom>
-										{item.name}
-									</Typography>
-									{item.temprature && (
-										<Typography component="p">
-											<ThermostatIcon /> {item.temprature}
+						{hideCompleted && item.isCompleted ? null : (
+							<Card>
+								<Stack flexGrow={1} direction={'row'} justifyContent={'space-between'}>
+									<CardContent>
+										<Typography variant="h6" gutterBottom>
+											{item.name}
 										</Typography>
-									)}
+										{item.temprature && (
+											<Typography component="p">
+												<ThermostatIcon /> {item.temprature}
+											</Typography>
+										)}
 
-									<br />
-									<Typography color="textSecondary" styel={{ overflow: 'hidden' }}>
-										{item.description}
-									</Typography>
-								</CardContent>
-								<CardActions>
-									<CompleteTask currentItem={item} onSuccess={fetchItems} />
-									<EditTask currentItem={item} onSuccess={fetchItems} />
-									<DeleteTask currentItem={item} onSuccess={fetchItems} />
-								</CardActions>
-							</Stack>
-						</Card>
+										<br />
+										<Typography color="textSecondary" styel={{ overflow: 'hidden' }}>
+											{item.description}
+										</Typography>
+									</CardContent>
+									<CardActions>
+										<CompleteTask currentItem={item} onSuccess={fetchItems} />
+										<EditTask currentItem={item} onSuccess={fetchItems} />
+										<DeleteTask currentItem={item} onSuccess={fetchItems} />
+									</CardActions>
+								</Stack>
+							</Card>
+						)}
 					</Grid>
 				))}
 			</Grid>
