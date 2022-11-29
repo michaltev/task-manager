@@ -22,7 +22,12 @@ function App({ signOut, user }) {
 
 	const fetchItems = async () => {
 		const data = await API.graphql(graphqlOperation(queries.listTasks));
-		setItems(data.data.listTasks.items);
+		// sort by creation date in FE - if the data was paginated, the sort must have been in the query
+		const sortedData = data.data.listTasks.items.sort(function (a, b) {
+			return new Date(b.createdAt) - new Date(a.createdAt);
+		});
+
+		setItems(sortedData);
 	};
 
 	return (
